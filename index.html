@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBB Burrer & Deuring | Ingenieurbaukunst für die Visionen von morgen</title>
+    <meta name="description" content="IBB Burrer & Deuring Ingenieurbüro GmbH - Ihr Partner für Tragwerksplanung, Bauphysik, Brandschutz und Prüfingenieurwesen. Präzise. Sicher. Ganzheitlich.">
+    <meta name="keywords" content="Tragwerksplanung, Bauphysik, Brandschutz, Prüfingenieur, Ingenieurbüro, IBB, Burrer, Deuring">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- AOS (Animate on Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Swiper.js for Carousel -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <style>
+        /* --- CSS Reset & Global Styles --- */
+        :root {
+            --prussian-blue: #003153;
+            --accent-orange: #E67E22;
+            --technical-grey: #F1F3F4;
+            --dark-grey: #333;
+            --light-grey: #e0e0e0;
+            --white: #FFFFFF;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+            --transition-speed: 0.3s;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--dark-grey);
+            background-color: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            cursor: none; /* Hide default cursor */
+        }
+        
+        /* --- Cursor Trail Effect --- */
+        .cursor-dot, .cursor-outline {
+            pointer-events: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+            z-index: 9999;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-orange);
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(230, 126, 34, 0.2);
+            transition: all 0.1s ease-out;
+        }
+        
+        body:hover .cursor-dot,
+        body:hover .cursor-outline {
+            opacity: 1;
+        }
+
+        /* Cursor interaction styles */
+        a:hover ~ .cursor-outline,
+        button:hover ~ .cursor-outline,
+        .interactive:hover ~ .cursor-outline {
+            transform: translate(-50%, -50%) scale(1.5);
+            background-color: rgba(230, 126, 34, 0.3);
+        }
+        a, button, .interactive {
+             cursor: none;
+        }
+
+        /* --- Global Elements & Typography --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            color: var(--prussian-blue);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; }
+        h3 { font-size: 1.5rem; }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--accent-orange);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-orange);
+            color: var(--white);
+            border: 2px solid var(--accent-orange);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--accent-orange);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--prussian-blue);
+            border: 2px solid var(--prussian-blue);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--prussian-blue);
+            color: var(--white);
+        }
+
+        /* --- Header & Navigation --- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: all var(--transition-speed) ease;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .header.scrolled {
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 49, 83, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--prussian-blue);
+            text-decoration: none;
+        }
+        
+        .logo span { color: var(--accent-orange); }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--prussian-blue);
+            font-family: var(--font-body);
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-orange);
+            transition: width var(--transition-speed) ease;
+        }
+        
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--prussian-blue);
+            transition: all var(--transition-speed) ease;
+        }
+
+        /* --- Hero Section --- */
+        #startseite {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            padding: 0;
+            position: relative;
+        }
+
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+        
+        #startseite::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 49, 83, 0.8), rgba(0, 49, 83, 0.5));
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero-content h1 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero-content .tagline {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            color: var(--light-grey);
+        }
+
+        /* --- USP Bar --- */
+        .usp-bar {
+            background-color: var(--technical-grey);
+            padding: 2.5rem 0;
+        }
+        
+        .usp-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .usp-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .usp-item svg {
+            width: 48px;
+            height: 48px;
+            color: var(--accent-orange);
+            stroke-width: 1.5;
+        }
+        
+        .usp-item h3 {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        /* --- Blueprint Motif --- */
+        .blueprint-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(224, 224, 224, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(224, 224, 224, 0.3) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        #leistungen, #kontakt { background-color: var(--technical-grey); }
+
+        /* --- Services Section --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border: 1px solid var(--light-grey);
+            border-radius: 5px;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 49, 83, 0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-orange);
+            box-shadow: 0 10px 25px rgba(0, 49, 83, 0.1);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 0;
+            background-color: var(--accent-orange);
+            transition: height var(--transition-speed) ease;
+        }
+        
+        .service-card:hover::before { height: 100%; }
+
+        .service-icon {
+            margin-bottom: 1.5rem;
+        }
+
+        .service-icon svg {
+            width: 48px;
+            height: 48px;
+            color: var(--prussian-blue);
+            transition: color var(--transition-speed) ease;
+        }
+        
+        .service-card:hover .service-icon svg { color: var(--accent-orange); }
+
+        .service-card h3 { margin-bottom: 1rem; }
+        .service-card p { font-size: 0.95rem; }
+
+        /* --- Projects Section --- */
+        #projekte .container {
+             max-width: 100%;
+             width: 100%;
+             padding: 0;
+        }
+
+        .swiper-container {
+            width: 100%;
+            padding: 2rem 0 4rem 0; /* Space for pagination */
+        }
+        
+        .swiper-slide {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 500px;
+        }
+        
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .swiper-slide:hover img {
+            transform: scale(1.05);
+        }
+        
+        .project-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0, 49, 83, 0.9), transparent);
+            color: var(--white);
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+        }
+        
+        .swiper-slide:hover .project-info {
+            transform: translateY(0);
+        }
+        
+        .project-info h3 { color: var(--white); margin-bottom: 0.5rem; }
+        .project-info p { color: var(--light-grey); }
+        
+        .swiper-pagination-bullet { background-color: var(--prussian-blue); opacity: 0.5; }
+        .swiper-pagination-bullet-active { background-color: var(--accent-orange); opacity: 1; }
+        .swiper-button-next, .swiper-button-prev { color: var(--white); }
+        .swiper-button-next:after, .swiper-button-prev:after { text-shadow: 0 0 10px rgba(0,0,0,0.5); }
+        
+        /* --- Expertise Section --- */
+        .expertise-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .expertise-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 49, 83, 0.15);
+            border: 5px solid var(--white);
+            outline: 1px solid var(--light-grey);
+        }
+        
+        .expertise-text h3 { margin-bottom: 1.5rem; }
+        .expertise-text .seal-icon {
+            width: 80px;
+            height: 80px;
+            color: var(--accent-orange);
+            float: left;
+            margin-right: 1.5rem;
+        }
+        .expertise-text blockquote {
+            font-style: italic;
+            border-left: 3px solid var(--accent-orange);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-size: 1.1rem;
+            color: var(--prussian-blue);
+        }
+
+        /* --- About Section --- */
+        #ueber-uns {
+            background-color: var(--prussian-blue);
+            color: var(--white);
+        }
+        #ueber-uns h2, #ueber-uns h3 {
+            color: var(--white);
+        }
+        #ueber-uns .section-subtitle {
+            color: var(--accent-orange);
+        }
+        .about-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--light-grey);
+            margin-bottom: 2rem;
+        }
+        
+        /* --- Contact Section --- */
+        .contact-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            text-align: left;
+        }
+        
+        .form-group { position: relative; }
+        
+        .form-group.full-width { grid-column: 1 / -1; }
+        
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--light-grey);
+            border-radius: 5px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            background-color: var(--white);
+            transition: border-color var(--transition-speed);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2);
+        }
+        
+        textarea.form-input {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .contact-wrapper .btn {
+            margin-top: 1rem;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--prussian-blue);
+            color: var(--light-grey);
+            padding: 4rem 0 2rem 0;
+            position: relative;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-col h4 {
+            color: var(--white);
+            font-family: var(--font-heading);
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-col p, .footer-col a {
+            color: var(--light-grey);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+            transition: color var(--transition-speed);
+        }
+        
+        .footer-col a:hover {
+            color: var(--accent-orange);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2rem; }
+            section { padding: 4rem 0; }
+            .expertise-content { grid-template-columns: 1fr; }
+            .expertise-img { margin-bottom: 2rem; height: auto; max-height: 400px; }
+            .usp-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            html { font-size: 15px; }
+            h1 { font-size: 2.2rem; }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--prussian-blue);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2.5rem;
+                transition: right var(--transition-speed) ease-in-out;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+            
+            .nav-menu.active { right: 0; }
+            
+            .nav-link {
+                color: var(--white);
+                font-size: 1.2rem;
+            }
+            
+            .hamburger {
+                display: flex;
+                z-index: 1001;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+                background-color: var(--accent-orange);
+            }
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+                background-color: var(--accent-orange);
+            }
+            
+            .contact-form { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-outline"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="#startseite" class="logo interactive">IBB<span>.</span></a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#startseite" class="nav-link interactive active">Startseite</a></li>
+                    <li><a href="#ueber-uns" class="nav-link interactive">Über Uns</a></li>
+                    <li><a href="#leistungen" class="nav-link interactive">Leistungen</a></li>
+                    <li><a href="#kompetenz" class="nav-link interactive">Kompetenz</a></li>
+                    <li><a href="#projekte" class="nav-link interactive">Projekte</a></li>
+                    <li><a href="#karriere" class="nav-link interactive">Karriere</a></li>
+                    <li><a href="#kontakt" class="nav-link interactive">Kontakt</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger interactive">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="startseite">
+            <video autoplay muted loop playsinline class="hero-video-bg">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-architect-working-on-a-city-plan-4235-large.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="container hero-content" data-aos="fade-up">
+                <h1>Ingenieurbaukunst für die Visionen von morgen.</h1>
+                <p class="tagline">Präzise. Sicher. Ganzheitlich.</p>
+                <a href="#projekte" class="btn btn-primary interactive">Unsere Projekte</a>
+                <a href="#kontakt" class="btn btn-secondary interactive" style="margin-left: 1rem;">Kontakt aufnehmen</a>
+            </div>
+        </section>
+
+        <!-- USP Bar -->
+        <section class="usp-bar">
+            <div class="container usp-grid">
+                <div class="usp-item" data-aos="fade-up" data-aos-delay="100">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <h3>Zertifizierte Prüfingenieure</h3>
+                    <p>Höchste Sicherheit und Qualität durch staatlich anerkannte Expertise.</p>
+                </div>
+                <div class="usp-item" data-aos="fade-up" data-aos-delay="200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    <h3>Ganzheitliche Projektlösungen</h3>
+                    <p>Von der Tragwerksplanung bis zum Brandschutz – alles aus einer Hand.</p>
+                </div>
+                <div class="usp-item" data-aos="fade-up" data-aos-delay="300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <h3>Bundesweite Präsenz</h3>
+                    <p>Mit Standorten in München, Berlin & Ingolstadt nah an Ihrem Projekt.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="leistungen" class="blueprint-bg">
+            <div class="container">
+                <p class="section-subtitle" data-aos="fade-up">Unser Portfolio</p>
+                <h2 data-aos="fade-up" data-aos-delay="100">Unsere Leistungen</h2>
+                <div class="services-grid">
+                    <div class="service-card interactive" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg></div>
+                        <h3>Tragwerksplanung</h3>
+                        <p>Wir entwickeln innovative und wirtschaftliche Tragwerke für Bauvorhaben jeder Größenordnung.</p>
+                    </div>
+                    <div class="service-card interactive" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg></div>
+                        <h3>Bauphysik</h3>
+                        <p>Unsere Experten sorgen für optimalen Wärme-, Feuchte- und Schallschutz sowie nachhaltige Energiekonzepte.</p>
+                    </div>
+                    <div class="service-card interactive" data-aos="fade-up" data-aos-delay="400">
+                        <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg></div>
+                        <h3>Brandschutz</h3>
+                        <p>Wir erstellen umfassende Brandschutzkonzepte, die Sicherheit gewährleisten und gesetzliche Vorgaben erfüllen.</p>
+                    </div>
+                    <div class="service-card interactive" data-aos="fade-up" data-aos-delay="500">
+                        <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg></div>
+                        <h3>Fassadenplanung</h3>
+                        <p>Ästhetik trifft Funktion: Wir planen anspruchsvolle Fassadenkonstruktionen mit Fokus auf Langlebigkeit.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projekte">
+            <div class="container">
+                <p class="section-subtitle" data-aos="fade-up">Portfolio</p>
+                <h2 data-aos="fade-up" data-aos-delay="100">Ausgewählte Projekte</h2>
+            </div>
+            <div class="swiper-container" data-aos="fade-up" data-aos-delay="200">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide interactive">
+                        <img src="https://images.unsplash.com/photo-1542337809-507633b47e80?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200" alt="Modernes Bürogebäude">
+                        <div class="project-info">
+                            <h3>Hauptverwaltung TechCorp</h3>
+                            <p>München, Deutschland | Tragwerksplanung & Brandschutz</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide interactive">
+                        <img src="https://images.unsplash.com/photo-1581362078634-08e043b2f7ae?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200" alt="Spektakuläre Konzert Halle">
+                        <div class="project-info">
+                            <h3>Philharmonie am Fluss</h3>
+                            <p>Berlin, Deutschland | Bauphysik & Fassadenplanung</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide interactive">
+                        <img src="https://images.unsplash.com/photo-1511497584788-876760111969?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200" alt="Wohnkomplex">
+                        <div class="project-info">
+                            <h3>Wohnquartier "Grüne Mitte"</h3>
+                            <p>Ingolstadt, Deutschland | Umfassende Ingenieurleistungen</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide interactive">
+                         <img src="https://images.unsplash.com/photo-1628807821610-14e3a35a78df?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200" alt="Modernes Museum">
+                        <div class="project-info">
+                            <h3>Museum für zeitgenössische Kunst</h3>
+                            <p>Hamburg, Deutschland | Prüfingenieurwesen & Tragwerksplanung</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+                <!-- Add Navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </section>
+        
+        <!-- Expertise Section -->
+        <section id="kompetenz">
+            <div class="container expertise-content">
+                <div class="expertise-image" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800" alt="Ingenieure bei der Besprechung von Bauplänen" class="expertise-img">
+                </div>
+                <div class="expertise-text" data-aos="fade-left" data-aos-delay="200">
+                    <p class="section-subtitle">Unsere Kernkompetenz</p>
+                    <h3>Prüfingenieurwesen: Ihr Garant für Sicherheit</h3>
+                    <svg class="seal-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <p>Die Benennung als <strong>Prüfingenieur für Baustatik</strong> ist die höchste Qualifikation im konstruktiven Ingenieurbau in Deutschland. Sie ist nicht nur ein Titel, sondern ein Versprechen für höchste Sorgfalt, Unabhängigkeit und bautechnische Sicherheit.</p>
+                    <blockquote>
+                        "Unsere Verantwortung geht über die reine Berechnung hinaus. Wir sichern die Standfestigkeit von Bauwerken und schützen damit Menschenleben und Sachwerte."
+                    </blockquote>
+                    <p>Wir prüfen im Auftrag der Bauaufsichtsbehörden und stehen Ihnen als vertrauensvoller Partner für die Einhaltung aller bautechnischen Vorschriften zur Seite.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section id="ueber-uns">
+            <div class="container about-content">
+                <p class="section-subtitle" data-aos="fade-up">Seit über 30 Jahren</p>
+                <h2 data-aos="fade-up" data-aos-delay="100">Partnerschaft, die trägt.</h2>
+                <p data-aos="fade-up" data-aos-delay="200">
+                    IBB Burrer & Deuring steht für eine langjährige Tradition der Ingenieurexzellenz. Gegründet auf den Prinzipien der Präzision und Zuverlässigkeit, haben wir uns zu einem führenden Ingenieurbüro entwickelt. Unser Team aus erfahrenen Spezialisten arbeitet Hand in Hand, um die Visionen unserer Kunden – Architekten, Bauherren und Entwickler – in sichere und langlebige Realität umzusetzen.
+                </p>
+                <a href="#" class="btn btn-primary interactive" data-aos="fade-up" data-aos-delay="300">Mehr über unsere Geschichte</a>
+            </div>
+        </section>
+
+        <!-- Career Placeholder -->
+        <section id="karriere" class="blueprint-bg">
+            <div class="container about-content">
+                 <p class="section-subtitle" data-aos="fade-up">Werden Sie Teil des Teams</p>
+                 <h2 data-aos="fade-up" data-aos-delay="100">Gestalten Sie die Zukunft mit uns.</h2>
+                 <p data-aos="fade-up" data-aos-delay="200">
+                     Wir sind stets auf der Suche nach talentierten und motivierten Ingenieuren, Technikern und Zeichnern, die unsere Leidenschaft für exzellente Bauprojekte teilen. Entdecken Sie ein Arbeitsumfeld, das auf Kollegialität, Innovation und persönlicher Weiterentwicklung basiert.
+                 </p>
+                 <a href="#" class="btn btn-secondary interactive" data-aos="fade-up" data-aos-delay="300">Aktuelle Stellenangebote</a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="kontakt">
+            <div class="container contact-wrapper">
+                <p class="section-subtitle" data-aos="fade-up">Lassen Sie uns bauen</p>
+                <h2 data-aos="fade-up" data-aos-delay="100">Haben Sie ein Projekt? Sprechen wir darüber.</h2>
+                <p data-aos="fade-up" data-aos-delay="200">Füllen Sie das Formular aus oder kontaktieren Sie einen unserer Standorte direkt. Wir freuen uns darauf, von Ihrer Vision zu hören und gemeinsam die passende Lösung zu entwickeln.</p>
+                
+                <form class="contact-form" data-aos="fade-up" data-aos-delay="300">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" class="form-input interactive" placeholder="Ihr Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" class="form-input interactive" placeholder="Ihre E-Mail-Adresse" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <input type="text" id="subject" name="subject" class="form-input interactive" placeholder="Betreff" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <textarea id="message" name="message" class="form-input interactive" placeholder="Ihre Nachricht" required></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <button type="submit" class="btn btn-primary interactive">Anfrage Senden</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col" data-aos="fade-up" data-aos-delay="100">
+                    <h4>IBB Burrer & Deuring</h4>
+                    <p>Ingenieurbüro GmbH</p>
+                    <p>Ihr Partner für anspruchsvolle Bauprojekte in ganz Deutschland.</p>
+                </div>
+                <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
+                    <h4>Standorte</h4>
+                    <a href="#">München</a>
+                    <a href="#">Berlin</a>
+                    <a href="#">Ingolstadt</a>
+                </div>
+                <div class="footer-col" data-aos="fade-up" data-aos-delay="300">
+                    <h4>Navigation</h4>
+                    <a href="#leistungen">Leistungen</a>
+                    <a href="#projekte">Projekte</a>
+                    <a href="#karriere">Karriere</a>
+                    <a href="#kontakt">Kontakt</a>
+                </div>
+                <div class="footer-col" data-aos="fade-up" data-aos-delay="400">
+                    <h4>Folgen Sie uns</h4>
+                    <div class="social-links">
+                        <a href="#" class="interactive" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                        <a href="#" class="interactive" aria-label="Xing">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-8.835 18h-2.24l-1.42-2.365-1.42 2.365h-2.24l2.559-4.08-2.559-4.08h2.24l1.42 2.365 1.42-2.365h2.24l-2.559 4.08 2.559 4.08zm8.835-2.924h-2.24l-1.92-2.923v2.923h-2v-8.16h2.24l1.92 2.923v-2.923h2v8.16z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; <span id="copyright-year"></span> IBB Burrer & Deuring Ingenieurbüro GmbH. Alle Rechte vorbehalten. | <a href="#">Impressum</a> | <a href="#">Datenschutz</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- AOS Initialization ---
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50,
+            });
+
+            // --- Sticky Header ---
+            const header = document.querySelector('.header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // --- Hamburger Menu ---
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }));
+            
+            // --- Active Nav Link on Scroll ---
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            function updateActiveLink() {
+                let index = sections.length;
+
+                while(--index && window.scrollY + 100 < sections[index].offsetTop) {}
+                
+                navLinks.forEach((link) => link.classList.remove('active'));
+                
+                // Ensure there's a matching link before trying to add a class
+                const activeLink = document.querySelector(`.nav-link[href="#${sections[index].id}"]`);
+                if (activeLink) {
+                   activeLink.classList.add('active');
+                }
+            }
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink(); // Initial call
+
+
+            // --- Swiper JS Initialization ---
+            const swiper = new Swiper('.swiper-container', {
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                slidesPerView: 1,
+                spaceBetween: 30,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                 breakpoints: {
+                    768: {
+                      slidesPerView: 2,
+                      spaceBetween: 30
+                    },
+                    1200: {
+                      slidesPerView: 3,
+                      spaceBetween: 40
+                    }
+                }
+            });
+
+            // --- Copyright Year ---
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
+            
+            // --- Cursor Effect ---
+            const cursorDot = document.querySelector(".cursor-dot");
+            const cursorOutline = document.querySelector(".cursor-outline");
+
+            window.addEventListener("mousemove", function (e) {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: "forwards" });
+            });
+
+        });
+    </script>
+</body>
+</html>
